@@ -23,7 +23,7 @@ struct Player {
 
 impl Player {
     fn new(class: Class) -> Self {
-        let learnset = class.get_learnset();
+        let learnset: VecDeque<PlayerAbility> = class.get_learnset();
         Player {
             class,
             level: 1,
@@ -42,20 +42,6 @@ enum Stat {
     Dex,
     Spd,
 }
-
-// impl Stat {
-//     fn apply_buff(&mut self, stat: Stat, amount: u8) {
-//         match stat {
-//             Stat::Hp => self.hp += amount as u32,
-//             Stat::Atk => self.atk += amount,
-//             Stat::Def => self.def += amount,
-//             Stat::Int => self.int += amount,
-//             Stat::Res => self.res += amount,
-//             Stat::Dex => self.dex += amount,
-//             Stat::Spd => self.spd += amount,
-//         }
-//     }
-// }
 
 #[derive(Debug)]
 enum Class {
@@ -93,7 +79,7 @@ impl Class {
 }
 
 fn main() {
-    let mut state = GameState::TitleScreen;
+    let mut state: GameState = GameState::TitleScreen;
     let mut player: Option<Player> = None;
 
     loop {
@@ -122,8 +108,10 @@ fn title_screen(state: &mut GameState) {
                   Press 'Enter' to start!"#
     );
 
-    let mut _buffer = String::new();
-    let _ = io::stdin().read_line(&mut _buffer);
+    let mut _buffer: String = String::new();
+    let _ = io::stdin()
+        .read_line(&mut _buffer)
+        .expect("Failed to read line");
 
     *state = GameState::ClassSelection;
 }
@@ -132,7 +120,7 @@ fn class_selection(state: &mut GameState, player: &mut Option<Player>) {
     println!("Choose a class: Mage, Knight, Rogue, Archer");
     println!("Type your class!");
 
-    let mut _class = String::new();
+    let mut _class: String = String::new();
     let _ = io::stdin()
         .read_line(&mut _class)
         .expect("Failed to read line");
