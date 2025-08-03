@@ -1,9 +1,11 @@
 mod abilities;
+mod formulae;
 
 use std::collections::VecDeque;
 use std::io;
 
 use crate::abilities::*;
+use crate::formulae::*;
 
 enum GameState {
     TitleScreen,
