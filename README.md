@@ -15,7 +15,7 @@
 2. Clone the repository:  
 
    ```bash  
-   git clone <your-repo-url>
+   git clone https://github.com/ralphmettle/oxidungeon
    ```
 
 3. Build and run the game:
