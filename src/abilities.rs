@@ -1,6 +1,6 @@
 use crate::Stat;
 
-pub enum PlayerAbility {
+pub enum Ability {
     Damage {
         name: &'static str,
         damage: u8,
@@ -43,8 +43,8 @@ pub enum DamageType {
 
 // Knight Abilities
 
-pub fn slash() -> PlayerAbility {
-    PlayerAbility::Damage {
+pub fn slash() -> Ability {
+    Ability::Damage {
         name: "Slash",
         damage: 10,
         effect: None,
@@ -52,8 +52,8 @@ pub fn slash() -> PlayerAbility {
     }
 }
 
-pub fn shield_bash() -> PlayerAbility {
-    PlayerAbility::Damage {
+pub fn shield_bash() -> Ability {
+    Ability::Damage {
         name: "Shield Bash",
         damage: 5,
         effect: Some(StatusEffect::Stun { duration: 2 }),
@@ -61,8 +61,8 @@ pub fn shield_bash() -> PlayerAbility {
     }
 }
 
-pub fn block() -> PlayerAbility {
-    PlayerAbility::Shielding {
+pub fn block() -> Ability {
+    Ability::Shielding {
         name: "Block",
         amount: 10,
         duration: 3,
@@ -71,8 +71,8 @@ pub fn block() -> PlayerAbility {
 
 // Mage Abilities
 
-pub fn fireball() -> PlayerAbility {
-    PlayerAbility::Damage {
+pub fn fireball() -> Ability {
+    Ability::Damage {
         name: "Fireball",
         damage: 10,
         effect: Some(StatusEffect::DoT {
@@ -83,8 +83,8 @@ pub fn fireball() -> PlayerAbility {
     }
 }
 
-pub fn ice_spike() -> PlayerAbility {
-    PlayerAbility::Damage {
+pub fn ice_spike() -> Ability {
+    Ability::Damage {
         name: "Ice Spike",
         damage: 5,
         effect: Some(StatusEffect::Freeze { duration: 1 }),
@@ -92,8 +92,8 @@ pub fn ice_spike() -> PlayerAbility {
     }
 }
 
-pub fn mana_shield() -> PlayerAbility {
-    PlayerAbility::Shielding {
+pub fn mana_shield() -> Ability {
+    Ability::Shielding {
         name: "Mana Shield",
         amount: 10,
         duration: 3,
@@ -102,8 +102,8 @@ pub fn mana_shield() -> PlayerAbility {
 
 // Archer Abilities
 
-pub fn arrow_shot() -> PlayerAbility {
-    PlayerAbility::Damage {
+pub fn arrow_shot() -> Ability {
+    Ability::Damage {
         name: "Arrow Shot",
         damage: 10,
         effect: None,
@@ -111,8 +111,8 @@ pub fn arrow_shot() -> PlayerAbility {
     }
 }
 
-pub fn caltrops() -> PlayerAbility {
-    PlayerAbility::Status {
+pub fn caltrops() -> Ability {
+    Ability::Status {
         name: "Caltrops",
         effects: vec![
             StatusEffect::DoT {
@@ -124,8 +124,8 @@ pub fn caltrops() -> PlayerAbility {
     }
 }
 
-pub fn dodge_stance() -> PlayerAbility {
-    PlayerAbility::Buff {
+pub fn dodge_stance() -> Ability {
+    Ability::Buff {
         name: "Dodge Stance",
         target: Stat::Dex,
         amount: 10,
@@ -134,8 +134,8 @@ pub fn dodge_stance() -> PlayerAbility {
 
 // Rogue Abilities
 
-pub fn stab() -> PlayerAbility {
-    PlayerAbility::Damage {
+pub fn stab() -> Ability {
+    Ability::Damage {
         name: "Stab",
         damage: 5,
         effect: Some(StatusEffect::Vulnerability {
@@ -146,8 +146,8 @@ pub fn stab() -> PlayerAbility {
     }
 }
 
-pub fn poison_barb() -> PlayerAbility {
-    PlayerAbility::Damage {
+pub fn poison_barb() -> Ability {
+    Ability::Damage {
         name: "Poison Barb",
         damage: 5,
         effect: Some(StatusEffect::DoT {
@@ -158,8 +158,8 @@ pub fn poison_barb() -> PlayerAbility {
     }
 }
 
-pub fn smokescreen() -> PlayerAbility {
-    PlayerAbility::Buff {
+pub fn smokescreen() -> Ability {
+    Ability::Buff {
         name: "Smokescreen",
         target: Stat::Dex,
         amount: 20,

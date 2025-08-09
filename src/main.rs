@@ -1,11 +1,15 @@
 mod abilities;
+mod enemy;
 mod formulae;
+mod stats;
 
 use std::collections::VecDeque;
 use std::io;
 
 use crate::abilities::*;
+use crate::enemy::*;
 use crate::formulae::*;
+use crate::stats::*;
 
 enum GameState {
     TitleScreen,
@@ -19,20 +23,30 @@ enum GameState {
 struct Player {
     class: Class,
     level: u8,
-    abilities: Vec<PlayerAbility>,
-    learnset: VecDeque<PlayerAbility>,
+    stats: Stats,
+    abilities: Vec<Ability>,
+    learnset: VecDeque<Ability>,
 }
 
 impl Player {
     fn new(class: Class) -> Self {
-        let learnset: VecDeque<PlayerAbility> = class.get_learnset();
+        let stats: Stats = Stats::from_class(&class);
+        let learnset: VecDeque<Ability> = class.get_learnset();
         Player {
             class,
             level: 1,
+            stats,
             abilities: vec![],
             learnset,
         }
     }
+}
+
+struct Enemy {
+    enemy_type: EnemyType,
+    level: u8,
+    stats: Stats,
+    abilities: Vec<Ability>,
 }
 
 enum Stat {
@@ -54,7 +68,7 @@ enum Class {
 }
 
 impl Class {
-    fn get_learnset(&self) -> VecDeque<PlayerAbility> {
+    fn get_learnset(&self) -> VecDeque<Ability> {
         match self {
             Class::Knight => VecDeque::from(vec![
                 abilities::slash(),
