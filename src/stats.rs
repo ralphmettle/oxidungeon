@@ -1,4 +1,4 @@
-use crate::{enemy::{self, EnemyType}, Class};
+use crate::{enemy::EnemyType, Class};
 
 pub struct Stats {
     hp: i16,
